@@ -23,20 +23,25 @@ export function Passport({ store, justStamped, onBack }: Props) {
   const total = DOMAINS.length * PARCOURS.length;
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const h = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key === 'Enter') onBack();
+    };
+    window.addEventListener('keydown', h);
+    return () => window.removeEventListener('keydown', h);
+  }, [onBack]);
 
   return (
-    <>
+    <div className="panel passport-panel">
       <div className="topbar">
-        <button className="icon-btn" aria-label="Retour à la carte" onClick={onBack}>
-          ←
+        <button className="icon-btn" aria-label="Fermer le passeport" onClick={onBack}>
+          ✕
         </button>
         <div className="t">
           <b>Mon passeport</b>
-          <small>Les VISA de mes parcours</small>
+          <small>Les VISA de mes parcours · Échap pour fermer</small>
         </div>
       </div>
+      <div className="passport-body">
 
       <motion.div
         className="passport-cover"
@@ -59,10 +64,13 @@ export function Passport({ store, justStamped, onBack }: Props) {
         </div>
       </motion.div>
 
-      {DOMAINS.map(d => (
-        <PassportPage key={d.id} d={d} store={store} justStamped={justStamped} />
-      ))}
-    </>
+      <div className="passport-pages">
+        {DOMAINS.map(d => (
+          <PassportPage key={d.id} d={d} store={store} justStamped={justStamped} />
+        ))}
+      </div>
+      </div>
+    </div>
   );
 }
 
@@ -72,7 +80,7 @@ function PassportPage({ d, store, justStamped }: { d: (typeof DOMAINS)[number]; 
   const hasNew = PARCOURS.some(p => keyOf(d, p) === justStamped);
 
   useEffect(() => {
-    if (hasNew) setTimeout(() => ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+    if (hasNew) setTimeout(() => ref.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
   }, [hasNew]);
 
   return (
@@ -102,7 +110,7 @@ function PassportPage({ d, store, justStamped }: { d: (typeof DOMAINS)[number]; 
                     setTimeout(fireworks, 150);
                   }}
                 >
-                  <Stamp color={d.color} label={`${d.name.split(' ')[0]} · P${p}`} date={best.visaDate} rotate={TILT[i]} size={118} />
+                  <Stamp color={d.color} label={`${d.name.split(' ')[0]} · P${p}`} date={best.visaDate} rotate={TILT[i]} size={150} />
                 </motion.div>
               ) : (
                 <div className="slot-empty">

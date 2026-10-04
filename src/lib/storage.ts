@@ -10,6 +10,8 @@ export interface Best {
 export interface Store {
   name: string;
   muted: boolean;
+  /** Personnage choisi (index dans HEROES) */
+  hero?: number;
   best: Record<string, Best>;
   /** Parcours dont l'animation de déblocage a déjà été montrée */
   seenUnlocks: string[];

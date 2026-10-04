@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { motion } from 'motion/react';
 import type { Domain, Parcours } from '../types';
 import type { Result } from '../lib/evaluation';
@@ -53,112 +53,126 @@ function useCountUp(to: number) {
 }
 
 export function Results({ domain: d, p, pc, name, result: r, newVisa, onHome, onAgain, onStampPassport }: Props) {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   const shown = useCountUp(r.pct);
-
   const toReview = pc.comps.map((c, ci) => ({ c, l: r.levels[ci] })).filter(x => x.l > 0);
   const s = r.maxStreak > 1 ? 's' : '';
 
+  // Entrée : tamponner le passeport s'il y a un nouveau VISA, sinon retour à l'île
+  const onKey = useRef<(e: KeyboardEvent) => void>(() => {});
+  onKey.current = e => {
+    if (e.key !== 'Enter' || e.repeat) return;
+    e.preventDefault();
+    if (newVisa) onStampPassport();
+    else onHome();
+  };
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => onKey.current(e);
+    window.addEventListener('keydown', h);
+    return () => window.removeEventListener('keydown', h);
+  }, []);
+
   return (
-    <div style={{ '--dc': d.color, '--ds': d.soft } as CSSProperties}>
+    <div className="panel results-panel" style={{ '--dc': d.color, '--ds': d.soft } as CSSProperties}>
       <div className="topbar">
-        <button className="icon-btn" aria-label="Retour à la carte" onClick={onHome}>
-          ⌂
+        <button className="icon-btn" aria-label="Retour à l'île" onClick={onHome}>
+          ✕
         </button>
         <div className="t">
           <b>{d.name}</b>
           <small>Parcours {p} terminé</small>
         </div>
       </div>
-      <Tutor msg={{ html: tutorMessage(r, name, newVisa), mood: r.visa ? 'cheer' : r.pct >= 50 ? 'proud' : 'sad', id: 1 }} />
-      <div className="score">
-        <div className="pct">{shown}%</div>
-        <div className="stars">
-          {[0, 1, 2].map(k => (
-            <motion.span
-              key={k}
-              className={k < r.stars ? '' : 'off'}
-              initial={{ scale: 0, rotate: -40 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ type: 'spring', stiffness: 500, damping: 14, delay: 0.35 + k * 0.12 }}
+      <div className="results-body">
+        <section className="results-left">
+          <Tutor msg={{ html: tutorMessage(r, name, newVisa), mood: r.visa ? 'cheer' : r.pct >= 50 ? 'proud' : 'sad', id: 1 }} />
+          <div className="score">
+            <div className="pct">{shown}%</div>
+            <div className="stars">
+              {[0, 1, 2].map(k => (
+                <motion.span
+                  key={k}
+                  className={k < r.stars ? '' : 'off'}
+                  initial={{ scale: 0, rotate: -40 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 14, delay: 0.35 + k * 0.12 }}
+                >
+                  ⭐
+                </motion.span>
+              ))}
+            </div>
+            {r.visa && (
+              <motion.div
+                className="visa-stamp"
+                initial={{ scale: 2.4, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.6, ease: [0.5, 0, 0.9, 0.4] }}
+              >
+                <Stamp color="var(--stamp)" label={`${d.name.split(' ')[0]} · P${p}`} rotate={-12} size={170} />
+              </motion.div>
+            )}
+            <div className="qcount">
+              Meilleure série : {r.maxStreak} bonne{s} réponse{s} d'affilée
+            </div>
+          </div>
+          {newVisa && (
+            <motion.button
+              className="cta stamp-cta"
+              onClick={onStampPassport}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.35 }}
             >
-              ⭐
-            </motion.span>
-          ))}
-        </div>
-        {r.visa && (
-          <motion.div
-            className="visa-stamp"
-            initial={{ scale: 2.4, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.6, ease: [0.5, 0, 0.9, 0.4] }}
-          >
-            <Stamp color="var(--stamp)" label={`${d.name.split(' ')[0]} · P${p}`} rotate={-12} size={96} />
-          </motion.div>
-        )}
-        <div className="qcount">
-          Meilleure série : {r.maxStreak} bonne{s} réponse{s} d'affilée
-        </div>
-      </div>
-      {newVisa && (
-        <motion.button
-          className="cta stamp-cta"
-          onClick={onStampPassport}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.35 }}
-        >
-          🛂 Tamponner mon passeport
-        </motion.button>
-      )}
-      <div style={{ overflowX: 'auto', marginTop: 14 }}>
-        <table className="grid">
-          <thead>
-            <tr>
-              <th>Compétence</th>
-              <th>Acquis</th>
-              <th>En cours</th>
-              <th>À revoir</th>
-            </tr>
-          </thead>
-          <tbody>
-            {pc.comps.map((c, ci) => (
-              <tr key={ci}>
-                <td className="c">
-                  <Tex>{c.name}</Tex>
-                  <small>{Math.round(r.compRatios[ci] * 100)}% de réussite</small>
-                </td>
-                {([0, 1, 2] as const).map(k => (
-                  <td key={k} className="s">
-                    <Face kind={k} on={r.levels[ci] === k} />
-                  </td>
-                ))}
+              🛂 Tamponner mon passeport <kbd>Entrée</kbd>
+            </motion.button>
+          )}
+          <div className="btn-row">
+            <button className="cta ghost" onClick={onHome}>
+              Retour à l'île {!newVisa && <kbd>Entrée</kbd>}
+            </button>
+            <button className="cta" onClick={onAgain}>
+              Rejouer
+            </button>
+          </div>
+        </section>
+        <section className="results-right">
+          <table className="grid">
+            <thead>
+              <tr>
+                <th>Compétence</th>
+                <th>Acquis</th>
+                <th>En cours</th>
+                <th>À revoir</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      {toReview.length > 0 && (
-        <div className="review">
-          <h3>À réviser dans le cahier</h3>
-          <ul>
-            {toReview.map(x => (
-              <li key={x.c.name}>
-                <Tex>{x.c.name}</Tex> : {x.c.pages}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      <div className="btn-row" style={{ marginTop: 18 }}>
-        <button className="cta ghost" onClick={onHome}>
-          Carte
-        </button>
-        <button className="cta" onClick={onAgain}>
-          Rejouer
-        </button>
+            </thead>
+            <tbody>
+              {pc.comps.map((c, ci) => (
+                <tr key={ci}>
+                  <td className="c">
+                    <Tex>{c.name}</Tex>
+                    <small>{Math.round(r.compRatios[ci] * 100)}% de réussite</small>
+                  </td>
+                  {([0, 1, 2] as const).map(k => (
+                    <td key={k} className="s">
+                      <Face kind={k} on={r.levels[ci] === k} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {toReview.length > 0 && (
+            <div className="review">
+              <h3>À réviser dans le cahier</h3>
+              <ul>
+                {toReview.map(x => (
+                  <li key={x.c.name}>
+                    <Tex>{x.c.name}</Tex> : {x.c.pages}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
       </div>
     </div>
   );

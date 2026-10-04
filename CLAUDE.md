@@ -84,8 +84,12 @@ Le but reste l'**évaluation**, pas l'exploration : le monde sert à motiver, pa
 - `src/lib/evaluation.ts` : score, niveaux, VISA, étoiles, bonus boss.
 - `src/lib/progress.ts` : état de chaque parcours (`locked` / `soon` / `open` / `done` / `visa`), déblocage, prochaine étape.
 - `src/lib/storage.ts` : sauvegarde (meilleur score, étoiles, date du VISA, déblocages déjà montrés).
-- `src/components/` : `Owl` (Nour animé), `Tutor` (bulle), `Stamp` (tampon VISA), `Face`, `Figure`, `Island`.
-- `src/screens/` : `Home` (carte actuelle, à remplacer par le monde Phaser), `Quiz`, `Results`, `Passport`.
+- `src/game/` : monde Phaser — `WorldScene` (île, eau, nuages, oiseaux, héros, caméra, lieux), `islands.ts` (plan des îles et
+  bâtiments en tuiles Kenney), `textures.ts` (textures dessinées par le code), `bridge.ts` (événements Phaser ↔ React :
+  `near`, `interact`, `ready` / `progress`, `pause`), `GameCanvas.tsx`, `config.ts` (personnages, zoom).
+- `src/components/` : `Stage` (scène UI 1920 × 1080 mise à l'échelle), `Hud`, `PlacePrompt` (Nour près d'un lieu), `Owl`,
+  `Tutor`, `Stamp`, `Face`, `Figure`, `HeroSprite`.
+- `src/screens/` (panneaux par-dessus le monde) : `HeroSelect`, `Quiz`, `Results`, `Passport`. CSS de l'interface PC : `src/world.css`.
 
 ## Tests
 - Le panneau navigateur intégré ne dessine pas toujours (`requestAnimationFrame` à l'arrêt) : pour les tests de bout en bout
@@ -108,5 +112,6 @@ Le but reste l'**évaluation**, pas l'exploration : le monde sert à motiver, pa
 Après chaque étape : **commit Git**, `npm run dev` sans erreur, et un **résumé simple** de ce qui marche et de ce qui reste.
 
 ## Historique
+- Étape 1 du nouveau plan : prototype Phaser avec l'île des Fractions (héros, déplacement, caméra, lieux P1/P2/P3, quiz en panneau).
 - Étapes 1 à 3 de l'ancien plan faites (commit `4b55312`) : jeu React, contenu des parcours 1 en JSON,
   carte d'aventure en 2D (HTML/SVG), passeport avec tampons, Nour animé, séries, support des questions boss.

@@ -71,6 +71,25 @@ export function Quiz({ domain: d, p, pc, name, onQuit, onFinish }: Props) {
     return () => clearTimeout(t);
   }, [banner]);
 
+  // Clavier : A/B/C ou 1/2/3 pour répondre, Entrée pour continuer
+  const onKey = useRef<(e: KeyboardEvent) => void>(() => {});
+  onKey.current = e => {
+    if (e.repeat || e.ctrlKey || e.altKey || e.metaKey) return;
+    const k = 'abc'.indexOf(e.key.toLowerCase()) >= 0 ? 'abc'.indexOf(e.key.toLowerCase()) : '123'.indexOf(e.key);
+    if (k >= 0 && !done && !wrong.includes(k)) {
+      e.preventDefault();
+      answer(k);
+    } else if (e.key === 'Enter' && done) {
+      e.preventDefault();
+      next();
+    }
+  };
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => onKey.current(e);
+    window.addEventListener('keydown', h);
+    return () => window.removeEventListener('keydown', h);
+  }, []);
+
   const record = (score: number) => setAnswers(a => [...a, { comp: q.comp, boss: !!q.boss, score }]);
 
   function answer(k: number) {
@@ -138,7 +157,7 @@ export function Quiz({ domain: d, p, pc, name, onQuit, onFinish }: Props) {
   const pct = Math.round(((i + (done ? 1 : 0)) / qs.length) * 100);
 
   return (
-    <div style={{ '--dc': d.color, '--ds': d.soft } as CSSProperties}>
+    <div className="panel quiz-panel" style={{ '--dc': d.color, '--ds': d.soft } as CSSProperties}>
       <div className="topbar">
         <button
           className="icon-btn"
@@ -176,13 +195,17 @@ export function Quiz({ domain: d, p, pc, name, onQuit, onFinish }: Props) {
             </motion.div>
           )}
         </AnimatePresence>
+        <div className="quiz-progress">
+          <div className="progress">
+            <motion.i animate={{ width: pct + '%' }} transition={{ duration: 0.35 }} />
+          </div>
+          <div className="qcount">
+            Question {i + 1} sur {qs.length}
+          </div>
+        </div>
       </div>
-      <div className="progress">
-        <motion.i animate={{ width: pct + '%' }} transition={{ duration: 0.35 }} />
-      </div>
-      <div className="qcount">
-        Question {i + 1} sur {qs.length}
-      </div>
+      <div className="quiz-body">
+      <div className="quiz-main">
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={i}
@@ -227,14 +250,21 @@ export function Quiz({ domain: d, p, pc, name, onQuit, onFinish }: Props) {
                   <Tex>{q.exp}</Tex>
                 </div>
                 <button ref={nextRef} className="cta" onClick={next}>
-                  {last ? 'Voir mon résultat' : 'Question suivante'}
+                  {last ? 'Voir mon résultat' : 'Question suivante'} <kbd>Entrée</kbd>
                 </button>
               </motion.div>
             )}
           </AnimatePresence>
         </motion.div>
       </AnimatePresence>
-      <Tutor msg={msg} />
+      </div>
+      <aside className="quiz-side">
+        <Tutor msg={msg} />
+        <p className="keys-hint">
+          Réponds avec <kbd>A</kbd> <kbd>B</kbd> <kbd>C</kbd> ou <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd>
+        </p>
+      </aside>
+      </div>
       <AnimatePresence>
         {banner && (
           <motion.div
