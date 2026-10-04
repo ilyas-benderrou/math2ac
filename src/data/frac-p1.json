@@ -1,0 +1,309 @@
+{
+  "comps": [
+    {
+      "name": "Lire et placer des abscisses fractionnaires entre 0 et 1",
+      "pages": "p. 6 et 8"
+    },
+    {
+      "name": "Additionner et soustraire des fractions de dénominateurs différents",
+      "pages": "p. 10"
+    },
+    {
+      "name": "Multiplier deux fractions",
+      "pages": "p. 13"
+    },
+    {
+      "name": "Modéliser une situation par une seule fraction",
+      "pages": "p. 16"
+    }
+  ],
+  "questions": [
+    {
+      "comp": 1,
+      "q": "Quelle est l'abscisse du point $A$ ?",
+      "options": [
+        {
+          "t": "$\\frac{3}{5}$",
+          "ok": true
+        },
+        {
+          "t": "$\\frac{3}{6}$",
+          "why": "عديتي الخطوط (6) بلاصة الأجزاء. المقام هو عدد الأجزاء المتساوية بين 0 و 1، يعني 5."
+        },
+        {
+          "t": "$\\frac{5}{3}$",
+          "why": "قلبتي الكسر! البسط هو عدد الأجزاء لي وصلنا ليهم (3)، والمقام هو عدد الأجزاء كاملين (5)."
+        }
+      ],
+      "hint": "عد الأجزاء المتساوية بين 0 و 1، ماشي الخطوط.",
+      "exp": "L'unité est partagée en $5$ parts égales et $A$ est à $3$ parts de $0$ : $A\\left(\\frac{3}{5}\\right)$.",
+      "fig": {
+        "type": "numberLine",
+        "parts": 5,
+        "points": [
+          {
+            "tick": 3,
+            "label": "A"
+          }
+        ]
+      }
+    },
+    {
+      "comp": 1,
+      "q": "Quelle est l'abscisse du point $B$ ?",
+      "options": [
+        {
+          "t": "$\\frac{3}{4}$",
+          "ok": true
+        },
+        {
+          "t": "$\\frac{6}{9}$",
+          "why": "9 هو عدد الخطوط، ماشي عدد الأجزاء. كاينين 8 ديال الأجزاء."
+        },
+        {
+          "t": "$\\frac{2}{8}$",
+          "why": "عديتي من جهة 1! ديما كنبداو العد من 0."
+        }
+      ],
+      "hint": "شحال من جزء كاين بين 0 و 1؟ ومن بعد بسّط الكسر.",
+      "exp": "$B$ est à $6$ parts sur $8$ : $\\frac{6}{8}=\\frac{3}{4}$.",
+      "fig": {
+        "type": "numberLine",
+        "parts": 8,
+        "points": [
+          {
+            "tick": 6,
+            "label": "B"
+          }
+        ]
+      }
+    },
+    {
+      "comp": 1,
+      "q": "Quel point a pour abscisse $\\frac{1}{2}$ ?",
+      "options": [
+        {
+          "t": "Le point $Q$",
+          "ok": true
+        },
+        {
+          "t": "Le point $P$",
+          "why": "النقطة P عندها $\\frac{1}{4}$: جزء واحد من 4. و $\\frac{1}{2}$ هي نص الوحدة."
+        },
+        {
+          "t": "Le point $R$",
+          "why": "النقطة R عندها $\\frac{3}{4}$، يعني فايتة النص."
+        }
+      ],
+      "hint": "$\\frac{1}{2}=\\frac{2}{4}$ — قلّب على النقطة لي فالنص.",
+      "exp": "$\\frac{1}{2}=\\frac{2}{4}$ : c'est le point $Q$, au milieu entre $0$ et $1$.",
+      "fig": {
+        "type": "numberLine",
+        "parts": 4,
+        "points": [
+          {
+            "tick": 1,
+            "label": "P"
+          },
+          {
+            "tick": 2,
+            "label": "Q"
+          },
+          {
+            "tick": 3,
+            "label": "R"
+          }
+        ]
+      }
+    },
+    {
+      "comp": 2,
+      "q": "Calcule : $\\frac{1}{2}+\\frac{1}{3}$",
+      "options": [
+        {
+          "t": "$\\frac{5}{6}$",
+          "ok": true
+        },
+        {
+          "t": "$\\frac{2}{5}$",
+          "why": "ما كنجمعوش البسط مع البسط والمقام مع المقام! خصنا نوحدو المقامات أولا."
+        },
+        {
+          "t": "$\\frac{2}{6}$",
+          "why": "وحّدتي المقام مزيان (6)، ولكن نسيتي تبدل البسوط: $\\frac{1}{2}=\\frac{3}{6}$ و $\\frac{1}{3}=\\frac{2}{6}$."
+        }
+      ],
+      "hint": "وحّد المقامات: شنو هو أصغر عدد كيتقسم على 2 و 3؟",
+      "exp": "$\\frac{1}{2}+\\frac{1}{3}=\\frac{3}{6}+\\frac{2}{6}=\\frac{5}{6}$",
+      "fig": null
+    },
+    {
+      "comp": 2,
+      "q": "Calcule : $\\frac{3}{4}-\\frac{1}{8}$",
+      "options": [
+        {
+          "t": "$\\frac{5}{8}$",
+          "ok": true
+        },
+        {
+          "t": "$\\frac{2}{8}$",
+          "why": "طرحتي البسوط بلا ما تحول $\\frac{3}{4}$ لـ $\\frac{6}{8}$."
+        },
+        {
+          "t": "$\\frac{1}{2}$",
+          "why": "خلّيتي المقام 4 وطرحتي $3-1$. خصك تحول للمقام 8 أولا."
+        }
+      ],
+      "hint": "$\\frac{3}{4}=\\frac{?}{8}$",
+      "exp": "$\\frac{3}{4}-\\frac{1}{8}=\\frac{6}{8}-\\frac{1}{8}=\\frac{5}{8}$",
+      "fig": null
+    },
+    {
+      "comp": 2,
+      "q": "Calcule : $\\frac{2}{3}+\\frac{1}{4}$",
+      "options": [
+        {
+          "t": "$\\frac{11}{12}$",
+          "ok": true
+        },
+        {
+          "t": "$\\frac{3}{7}$",
+          "why": "جمعتي البسوط والمقامات مباشرة. خصنا مقام مشترك: 12."
+        },
+        {
+          "t": "$\\frac{3}{12}$",
+          "why": "المقام 12 صحيح، ولكن خصك تضرب البسوط: $\\frac{2}{3}=\\frac{8}{12}$ و $\\frac{1}{4}=\\frac{3}{12}$."
+        }
+      ],
+      "hint": "المقام المشترك ديال 3 و 4 هو 12.",
+      "exp": "$\\frac{2}{3}+\\frac{1}{4}=\\frac{8}{12}+\\frac{3}{12}=\\frac{11}{12}$",
+      "fig": null
+    },
+    {
+      "comp": 3,
+      "q": "Calcule : $\\frac{2}{3}\\times\\frac{4}{5}$",
+      "options": [
+        {
+          "t": "$\\frac{8}{15}$",
+          "ok": true
+        },
+        {
+          "t": "$\\frac{6}{8}$",
+          "why": "هادي جمعتيها! فالضرب كنضربو البسط × البسط والمقام × المقام."
+        },
+        {
+          "t": "$\\frac{10}{12}$",
+          "why": "ضربتي بالتقاطع ($2\\times5$ و $3\\times4$)، هادي ماشي قاعدة الضرب."
+        }
+      ],
+      "hint": "البسط × البسط، والمقام × المقام.",
+      "exp": "$\\frac{2}{3}\\times\\frac{4}{5}=\\frac{2\\times4}{3\\times5}=\\frac{8}{15}$",
+      "fig": null
+    },
+    {
+      "comp": 3,
+      "q": "Calcule et simplifie : $\\frac{3}{4}\\times\\frac{2}{9}$",
+      "options": [
+        {
+          "t": "$\\frac{1}{6}$",
+          "ok": true
+        },
+        {
+          "t": "$\\frac{6}{13}$",
+          "why": "البسط صحيح ($3\\times2=6$) ولكن المقامات كيتضربو ماشي كيتجمعو: $4\\times9=36$."
+        },
+        {
+          "t": "$\\frac{27}{8}$",
+          "why": "هادي قسمة ماشي ضرب: قلبتي الكسر الثاني."
+        }
+      ],
+      "hint": "احسب $\\frac{3\\times2}{4\\times9}$ ومن بعد بسّط.",
+      "exp": "$\\frac{3}{4}\\times\\frac{2}{9}=\\frac{6}{36}=\\frac{1}{6}$",
+      "fig": null
+    },
+    {
+      "comp": 3,
+      "q": "Calcule : $5\\times\\frac{2}{7}$",
+      "options": [
+        {
+          "t": "$\\frac{10}{7}$",
+          "ok": true
+        },
+        {
+          "t": "$\\frac{10}{35}$",
+          "why": "ضربتي البسط والمقام بجوج فـ 5! هكا رجعتي لنفس الكسر $\\frac{2}{7}$."
+        },
+        {
+          "t": "$\\frac{2}{35}$",
+          "why": "العدد 5 كيتضرب فالبسط ماشي فالمقام."
+        }
+      ],
+      "hint": "$5=\\frac{5}{1}$",
+      "exp": "$5\\times\\frac{2}{7}=\\frac{5}{1}\\times\\frac{2}{7}=\\frac{10}{7}$",
+      "fig": null
+    },
+    {
+      "comp": 4,
+      "q": "Une pizza est coupée en $8$ parts égales. Amine mange $3$ parts. Quelle fraction de la pizza a-t-il mangée ?",
+      "options": [
+        {
+          "t": "$\\frac{3}{8}$",
+          "ok": true
+        },
+        {
+          "t": "$\\frac{3}{5}$",
+          "why": "قارنتي الأجزاء لي كلا (3) مع لي بقاو (5). المقام هو المجموع: 8."
+        },
+        {
+          "t": "$\\frac{5}{8}$",
+          "why": "هادي هي الأجزاء لي بقاو، ماشي لي كلا أمين."
+        }
+      ],
+      "hint": "الكسر = الأجزاء لي كلا ÷ مجموع الأجزاء.",
+      "exp": "Amine a mangé $3$ parts sur $8$ : $\\frac{3}{8}$.",
+      "fig": null
+    },
+    {
+      "comp": 4,
+      "q": "Dans une classe de $30$ élèves, $12$ sont des filles. Quelle fraction de la classe représentent les filles ?",
+      "options": [
+        {
+          "t": "$\\frac{2}{5}$",
+          "ok": true
+        },
+        {
+          "t": "$\\frac{12}{18}$",
+          "why": "قارنتي البنات مع الدراري (18). خصك تقارن مع القسم كامل: 30."
+        },
+        {
+          "t": "$\\frac{3}{5}$",
+          "why": "هادي هي نسبة الدراري ماشي البنات."
+        }
+      ],
+      "hint": "$\\frac{12}{30}$ — واش تقدر تبسّطها؟",
+      "exp": "$\\frac{12}{30}=\\frac{12\\div6}{30\\div6}=\\frac{2}{5}$",
+      "fig": null
+    },
+    {
+      "comp": 4,
+      "q": "Sara a lu $45$ pages d'un livre de $60$ pages. Quelle fraction du livre lui reste-t-il à lire ?",
+      "options": [
+        {
+          "t": "$\\frac{1}{4}$",
+          "ok": true
+        },
+        {
+          "t": "$\\frac{3}{4}$",
+          "why": "هادي هي الصفحات لي قرات ($\\frac{45}{60}$). السؤال على لي باقي."
+        },
+        {
+          "t": "$\\frac{15}{45}$",
+          "why": "قسمتي الباقي على لي قرات. خصك تقسم على الكتاب كامل: 60."
+        }
+      ],
+      "hint": "شحال باقي ليها؟ $60-45=\\,?$",
+      "exp": "Il reste $60-45=15$ pages : $\\frac{15}{60}=\\frac{1}{4}$.",
+      "fig": null
+    }
+  ]
+}

@@ -1,0 +1,330 @@
+{
+  "comps": [
+    {
+      "name": "Exprimer une situation à l'aide de $x+a$ ou $ax$",
+      "pages": "p. 42"
+    },
+    {
+      "name": "Réduire des expressions littérales",
+      "pages": "p. 48"
+    },
+    {
+      "name": "Multiplier et diviser $ax$ par un entier",
+      "pages": "p. 52"
+    },
+    {
+      "name": "Multiplier $ax+b$ par un entier",
+      "pages": "p. 56"
+    },
+    {
+      "name": "Résoudre $x+a=b$ et $ax=b$",
+      "pages": "p. 61"
+    },
+    {
+      "name": "Lire un graphe : image et antécédent",
+      "pages": "p. 67"
+    }
+  ],
+  "questions": [
+    {
+      "comp": 1,
+      "q": "Un cahier coûte $x$ dirhams. Combien coûtent $4$ cahiers ?",
+      "options": [
+        {
+          "t": "$4x$",
+          "ok": true
+        },
+        {
+          "t": "$x+4$",
+          "why": "4 كراسات = 4 مرات الثمن، يعني ضرب ماشي جمع."
+        },
+        {
+          "t": "$\\frac{x}{4}$",
+          "why": "قسمتي! 4 كراسات أغلى من وحدة، خصنا نضربو."
+        }
+      ],
+      "hint": "$x+x+x+x=\\,?$",
+      "exp": "$x+x+x+x=4x$",
+      "fig": null
+    },
+    {
+      "comp": 1,
+      "q": "Yassine a $x$ ans. Sa sœur a $3$ ans de plus que lui. Quel est l'âge de sa sœur ?",
+      "options": [
+        {
+          "t": "$x+3$",
+          "ok": true
+        },
+        {
+          "t": "$3x$",
+          "why": "«3 سنين كثر» = نزيدو 3، ماشي نضربو فـ 3."
+        },
+        {
+          "t": "$x-3$",
+          "why": "كثر منو يعني كبر منو ← $+3$."
+        }
+      ],
+      "hint": "« de plus » = زيادة.",
+      "exp": "L'âge de la sœur est $x+3$.",
+      "fig": null
+    },
+    {
+      "comp": 2,
+      "q": "Réduis : $3x+5x$",
+      "options": [
+        {
+          "t": "$8x$",
+          "ok": true
+        },
+        {
+          "t": "$8x^2$",
+          "why": "فالجمع $x$ كتبقى $x$، ماشي $x^2$."
+        },
+        {
+          "t": "$15x$",
+          "why": "ضربتي $3\\times5$. هنا كنجمعو المعاملات: $3+5$."
+        }
+      ],
+      "hint": "3 ديال $x$ + 5 ديال $x$ = ؟",
+      "exp": "$3x+5x=(3+5)x=8x$",
+      "fig": null
+    },
+    {
+      "comp": 2,
+      "q": "Réduis : $2x+3+4x+1$",
+      "options": [
+        {
+          "t": "$6x+4$",
+          "ok": true
+        },
+        {
+          "t": "$10x$",
+          "why": "ما نقدروش نجمعو $x$ مع الأعداد بوحدهم!"
+        },
+        {
+          "t": "$6x^2+4$",
+          "why": "$2x+4x=6x$ ماشي $6x^2$."
+        }
+      ],
+      "hint": "جمع $x$ مع $x$، والأعداد مع الأعداد.",
+      "exp": "$2x+4x+3+1=6x+4$",
+      "fig": null
+    },
+    {
+      "comp": 3,
+      "q": "Calcule : $3\\times4x$",
+      "options": [
+        {
+          "t": "$12x$",
+          "ok": true
+        },
+        {
+          "t": "$7x$",
+          "why": "جمعتي 3 و 4، خصك تضرب."
+        },
+        {
+          "t": "$3+4x$",
+          "why": "$3\\times4x=(3\\times4)\\,x$."
+        }
+      ],
+      "hint": "$3\\times4x=(3\\times4)\\times x$",
+      "exp": "$3\\times4x=12x$",
+      "fig": null
+    },
+    {
+      "comp": 3,
+      "q": "Calcule : $\\frac{18x}{6}$",
+      "options": [
+        {
+          "t": "$3x$",
+          "ok": true
+        },
+        {
+          "t": "$12x$",
+          "why": "طرحتي 6 بلاصة ما تقسم."
+        },
+        {
+          "t": "$3$",
+          "why": "$x$ ما كتختفيش! $\\frac{18x}{6}=3x$."
+        }
+      ],
+      "hint": "$18\\div6=\\,?$",
+      "exp": "$\\frac{18x}{6}=\\frac{18}{6}\\,x=3x$",
+      "fig": null
+    },
+    {
+      "comp": 4,
+      "q": "Développe : $3(2x+5)$",
+      "options": [
+        {
+          "t": "$6x+15$",
+          "ok": true
+        },
+        {
+          "t": "$6x+5$",
+          "why": "ضربتي غير $2x$. خص 3 تضرب حتى فـ 5."
+        },
+        {
+          "t": "$5x+8$",
+          "why": "جمعتي بلاصة ما تضرب."
+        }
+      ],
+      "hint": "$3\\times2x$ و $3\\times5$",
+      "exp": "$3(2x+5)=3\\times2x+3\\times5=6x+15$",
+      "fig": null
+    },
+    {
+      "comp": 4,
+      "q": "Développe : $4(x-2)$",
+      "options": [
+        {
+          "t": "$4x-8$",
+          "ok": true
+        },
+        {
+          "t": "$4x-2$",
+          "why": "4 خصها تضرب حتى فـ 2."
+        },
+        {
+          "t": "$4x+8$",
+          "why": "الإشارة ناقص كتبقى: $4\\times(-2)=-8$."
+        }
+      ],
+      "hint": "$4\\times x$ و $4\\times(-2)$",
+      "exp": "$4(x-2)=4x-8$",
+      "fig": null
+    },
+    {
+      "comp": 5,
+      "q": "Résous l'équation : $x+7=12$",
+      "options": [
+        {
+          "t": "$x=5$",
+          "ok": true
+        },
+        {
+          "t": "$x=19$",
+          "why": "زدتي 7! خصك تحيدها: $x=12-7$."
+        },
+        {
+          "t": "$x=-5$",
+          "why": "$12-7=+5$ ماشي $-5$."
+        }
+      ],
+      "hint": "شنو هو العدد لي إلا زدنا ليه 7 كيعطي 12؟",
+      "exp": "$x=12-7=5$",
+      "fig": null
+    },
+    {
+      "comp": 5,
+      "q": "Résous l'équation : $3x=21$",
+      "options": [
+        {
+          "t": "$x=7$",
+          "ok": true
+        },
+        {
+          "t": "$x=18$",
+          "why": "طرحتي 3. $3x$ معناها $3\\times x$، إذن نقسمو."
+        },
+        {
+          "t": "$x=63$",
+          "why": "ضربتي بلاصة ما تقسم: $x=\\frac{21}{3}$."
+        }
+      ],
+      "hint": "$3\\times\\,?=21$",
+      "exp": "$x=\\frac{21}{3}=7$",
+      "fig": null
+    },
+    {
+      "comp": 6,
+      "q": "Voici la courbe d'une fonction $f$. Quelle est l'image de $1$ par $f$ ?",
+      "options": [
+        {
+          "t": "$4$",
+          "ok": true
+        },
+        {
+          "t": "$3$",
+          "why": "هادا هو السابق ديال 1. الصورة كنقراوها على المحور العمودي."
+        },
+        {
+          "t": "$2$",
+          "why": "هادي $f(0)$. انطلق من 1 فالمحور الأفقي وطلع للمنحنى."
+        }
+      ],
+      "hint": "انطلق من 1 فالمحور الأفقي، طلع للمنحنى، ومن بعد شوف المحور العمودي.",
+      "exp": "$f(1)=4$ : l'image de $1$ est $4$.",
+      "fig": {
+        "type": "graph",
+        "points": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "comp": 6,
+      "q": "Voici la courbe d'une fonction $f$. Quel est l'antécédent de $1$ par $f$ ?",
+      "options": [
+        {
+          "t": "$3$",
+          "ok": true
+        },
+        {
+          "t": "$4$",
+          "why": "هادي هي الصورة ديال 1. السابق: نقلبو على $x$ لي كيعطي $f(x)=1$."
+        },
+        {
+          "t": "$2$",
+          "why": "$f(2)=3$ ماشي 1. انطلق من 1 فالمحور العمودي."
+        }
+      ],
+      "hint": "انطلق من 1 فالمحور العمودي، سير أفقيا حتى للمنحنى، ومن بعد نزل.",
+      "exp": "$f(3)=1$ : l'antécédent de $1$ est $3$.",
+      "fig": {
+        "type": "graph",
+        "points": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            0
+          ]
+        ]
+      }
+    }
+  ]
+}

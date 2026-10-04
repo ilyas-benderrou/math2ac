@@ -1,0 +1,23 @@
+[
+  {
+    "id": "frac",
+    "name": "Fractions",
+    "ar": "الكسور",
+    "color": "#D18A1E",
+    "soft": "#FCF1DB"
+  },
+  {
+    "id": "rel",
+    "name": "Nombres positifs et négatifs",
+    "ar": "الأعداد الموجبة والسالبة",
+    "color": "#DD6430",
+    "soft": "#FDE8DC"
+  },
+  {
+    "id": "alg",
+    "name": "Algèbre",
+    "ar": "الجبر",
+    "color": "#AE4068",
+    "soft": "#F9E4EB"
+  }
+]
